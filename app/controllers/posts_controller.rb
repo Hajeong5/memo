@@ -10,6 +10,7 @@ load_and_authorize_resource
   
   else
     @posts = Post.where(user_id: current_user.followees.ids.push(current_user))
+
  end
 end
 
