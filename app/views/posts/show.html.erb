@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Image:</strong>
+  <img src= "<%= @post.image.url %>" width="300px">
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @post.user.email %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<p>
+  <strong>Likes:</strong>
+  <%= @post.like_users.count %>
+</p>
+
+<p>
+  <% if @post.like_users.include?(current_user) %>
+    <%= link_to 'Unlike', like_post_path, method: :post %>
+  <% else %>
+    <%= link_to 'like', like_post_path, method: :post %>
+  <% end %>
+</p>
+
+<% if can? :manage, @post %>
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<% end %>
+<%= link_to 'Back', posts_path %>
